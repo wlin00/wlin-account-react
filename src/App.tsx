@@ -1,5 +1,7 @@
-export function App() {
+import * as React from 'react'
+
+export const App: React.FC = () => {
   return (
-    <div>App-test1</div>
+    <div>app</div>
   )
 }
