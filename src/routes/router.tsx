@@ -4,6 +4,7 @@ import { Welcome1 } from '../pages/Welcome/components/Welcome1'
 import { Welcome2 } from '../pages/Welcome/components/Welcome2';
 import { Welcome3 } from '../pages/Welcome/components/Welcome3';
 import { Welcome4 } from '../pages/Welcome/components/Welcome4';
+import { WelcomeLayout } from '../pages/Welcome/Welcome';
 
 export const routes = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ export const routes = createBrowserRouter([
       { index: true, element: <RedirectPage/> },
       {
         path: 'welcome',
-        element: <Outlet />,
+        element: <WelcomeLayout />,
         children: [
           { index: true, element: <RedirectPage/> },
           {
