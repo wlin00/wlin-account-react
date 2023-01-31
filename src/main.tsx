@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { App } from './App'
 import { NavLink, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { RedirectPage } from './components/RedirectPage'
+import { SpringDemo } from './components/SpringDemo';
 
 const div = document.getElementById('root') as HTMLElement
 const root = ReactDOM.createRoot(div)
@@ -22,6 +23,7 @@ const routes = createBrowserRouter([
             path: '1',
             element: (
               <div>1 <NavLink to="/welcome/2">下一页</NavLink></div>
+              // <SpringDemo />
             )
           },
           {
