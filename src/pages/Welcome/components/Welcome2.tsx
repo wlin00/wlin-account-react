@@ -1,8 +1,11 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom';
+import clock from '../../../assets/icons/clock.svg'
 
 export const Welcome2: React.FC = () => {
   return (
-    <div style={{ border: '1px solid red' }}> 2 <NavLink to="/welcome/3">下一页</NavLink> </div>
+    <div text-center>
+      <img src={clock} />
+      <h2 text-32px mt-48px>每日提醒<br/>不遗漏每一笔账单</h2>
+    </div>
   )
 }

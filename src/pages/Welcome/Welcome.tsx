@@ -38,21 +38,21 @@ export const WelcomeLayout: React.FC = () => {
   })
 
   return (
-    <div>
-      <header>
-        <img src={logo} />
-        <h1>Wlin记账</h1>
+    <div className='bg-#39f' h-screen flex flex-col items-stretch pb-16px>
+      <header shrink-0 text-center pt-64px>
+        <img src={logo} w-64px />
+        <h1 className='text-#D4D4EE' text-32px>Wlin记账</h1>
       </header>
-      <main>{
+      <main overflow-hidden shrink-1 grow-1 bg-white m-16px rounded-8px flex justify-center items-center>{
         transitions((style, pathname) => {
           return <animated.div key={pathname} style={style}>
             { map.current[location.pathname] }  {/* 渲染当前路径对应的插槽子组件Outlet */}
           </animated.div>
         })     
       }</main>
-      <footer>
-        <Link to={linkMap[location.pathname as keyof IWelcomePath]}>下一页</Link>
-        <Link to="/start">跳过</Link>
+      <footer pb-5px shrink-0 text-center text-24px text-white grid grid-cols-3 grid-rows-1>
+        <Link style={{ gridArea: '1 / 2 / 2 / 3' }} to={linkMap[location.pathname as keyof IWelcomePath]}>下一页</Link>
+        <Link style={{ gridArea: '1 / 3 / 2 / 4' }} to="/start">跳过</Link>
       </footer>
     </div>
   )

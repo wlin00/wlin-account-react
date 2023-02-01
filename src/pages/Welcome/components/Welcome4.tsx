@@ -1,8 +1,11 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom';
+import cloud from '../../../assets/icons/cloud.svg'
 
 export const Welcome4: React.FC = () => {
   return (
-    <div style={{ border: '1px solid red' }}> 4 <NavLink to="/start">完成</NavLink> </div>
+    <div text-center>
+      <img src={cloud} />
+      <h2 text-32px mt-48px>云备份<br/>再也不怕数据丢失</h2>
+    </div>
   )
 }
