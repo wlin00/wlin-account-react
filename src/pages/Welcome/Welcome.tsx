@@ -43,14 +43,18 @@ export const WelcomeLayout: React.FC = () => {
         <img src={logo} w-64px />
         <h1 className='text-#D4D4EE' text-32px>Wlin记账</h1>
       </header>
-      <main overflow-hidden shrink-1 grow-1 bg-white m-16px rounded-8px flex justify-center items-center>{
+      <main overflow-hidden shrink-1 grow-1 m-16px>{
         transitions((style, pathname) => {
-          return <animated.div key={pathname} style={style}>
+          return <animated.div 
+            key={pathname} style={style} bg-white rounded-8px flex justify-center items-center
+            className="w-100% h-100%"
+          >
             { map.current[location.pathname] }  {/* 渲染当前路径对应的插槽子组件Outlet */}
           </animated.div>
         })     
       }</main>
       <footer pb-5px shrink-0 text-center text-24px text-white grid grid-cols-3 grid-rows-1>
+        {/* flex布局 - grid-area属性用法：《 grid-area:'从第几行开始/ 从第几列开始 / 从第几行结束 / 从第几列结束' 》 */}
         <Link style={{ gridArea: '1 / 2 / 2 / 3' }} to={linkMap[location.pathname as keyof IWelcomePath]}>下一页</Link>
         <Link style={{ gridArea: '1 / 3 / 2 / 4' }} to="/start">跳过</Link>
       </footer>
