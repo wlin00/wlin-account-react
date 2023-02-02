@@ -5,12 +5,13 @@ import { Welcome2 } from '../pages/Welcome/components/Welcome2';
 import { Welcome3 } from '../pages/Welcome/components/Welcome3';
 import { Welcome4 } from '../pages/Welcome/components/Welcome4';
 import { WelcomeLayout } from '../pages/Welcome/Welcome';
+import { NotFoundPage } from '../components/NotFoundPage';
 
 export const routes = createBrowserRouter([
   {
     path: '/',
     element: <Outlet/>, // Outlet 类似vue中的 <RouterView />
-    errorElement: <RedirectPage/>,
+    errorElement: <NotFoundPage/>,
     children: [
       { index: true, element: <RedirectPage/> },
       {

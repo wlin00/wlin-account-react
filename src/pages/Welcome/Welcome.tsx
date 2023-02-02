@@ -47,7 +47,7 @@ export const WelcomeLayout: React.FC = () => {
   })
 
   return (
-    <div className='bg-#39f' h-screen flex flex-col items-stretch pb-16px>
+    <div className='bg-#39f' overflow-y-hidden h-screen flex flex-col items-stretch pb-16px>
       <header shrink-0 text-center pt-64px>
         <img src={logo} w-64px h-69px />
         <h1 className='text-#D4D4EE' text-32px>Wlin记账</h1>
