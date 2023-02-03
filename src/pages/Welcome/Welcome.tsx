@@ -1,9 +1,10 @@
 // 用于承载Welcome part1 - part4 的容器组件
 import { animated, useTransition } from '@react-spring/web';
 import type { ReactNode } from 'react';
-import { Link, useLocation, useOutlet } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { Link, useLocation, useOutlet, useNavigate } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react';
 import logo from '../../assets/icons/mangosteen.svg'
+import { useSwipe } from '../../hooks/useSwipe';
 
 interface IWelcomePath {
   '/welcome/1': string,
@@ -21,10 +22,27 @@ const linkMap: Record<keyof IWelcomePath, string> = {
 // 容器组件 WelcomeLayout
 export const WelcomeLayout: React.FC = () => {
   const map = useRef<Record<string, ReactNode>>({}) // 使用map: Record<string, ReactNode> 哈希表来存储以当前路径为key，以当前子组件虚拟Dom为值的数据
+  const main = useRef<HTMLElement>(null)
+  const isSwiping = useRef<boolean>(false)
   const location = useLocation() // 获取当前地址信息如：'/welcome/1'
   const outlet = useOutlet() // 获取当前地址的插槽子组件
   map.current[location.pathname] = outlet // 存储到hash表，方便下面在div中渲染当前地址的子组件并添加过渡动画
-  const [extraStyle, setExtraStyle] = useState({ position: 'relative' }) // 动画div的淡入配置
+  const [extraStyle, setExtraStyle] = useState<{position: 'absolute' | 'relative'}>({ position: 'relative' }) // 动画div的淡入配置
+  const nav = useNavigate() 
+  const { direction, swiping } = useSwipe(main)
+  // 手指滑动 - 跳转路由
+  const manualPushNav = () => { // 手指滑动事件节流，节流时间为动画的时间
+    nav(linkMap[location.pathname as keyof IWelcomePath])
+  }
+
+  useEffect(() => {
+    if (swiping.current && direction === 'left') {
+      if (isSwiping.current) { return }
+      isSwiping.current = true
+      manualPushNav()
+    }
+  }, [direction, swiping])
+
 
   // 按 react-sping 文档配置当前路由（淡入/淡出）的过渡动画
   const transitions = useTransition(location.pathname, {
@@ -43,6 +61,7 @@ export const WelcomeLayout: React.FC = () => {
     },
     onRest: () => {
       setExtraStyle({ position: 'relative' })
+      isSwiping.current = false // 动画结束，打开允许动画开关
     }
   })
 
@@ -52,7 +71,7 @@ export const WelcomeLayout: React.FC = () => {
         <img src={logo} w-64px h-69px />
         <h1 className='text-#D4D4EE' text-32px>Wlin记账</h1>
       </header>
-      <main shrink-1 grow-1 relative>{
+      <main shrink-1 grow-1 relative ref={main}>{
         transitions((style, pathname) => {
           return <animated.div 
             key={pathname} 
