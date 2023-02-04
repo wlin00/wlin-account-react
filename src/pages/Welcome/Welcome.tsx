@@ -5,6 +5,7 @@ import { Link, useLocation, useOutlet, useNavigate } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
 import logo from '../../assets/icons/mangosteen.svg'
 import { useSwipe } from '../../hooks/useSwipe';
+import { useStorageStore } from '../../stores/useStorageStore';
 
 interface IWelcomePath {
   '/welcome/1': string,
@@ -36,8 +37,9 @@ export const WelcomeLayout: React.FC = () => {
   }
 
   // 用户看过首次动画后，localStorage存储hasRead，下次进入后直接到 /start 页
+  const { changeHasRead } = useStorageStore()
   const onSkip = () => {
-    localStorage.setItem('hasRead', '1')
+    changeHasRead() // 修改zustand仓库中的hasRead状态 & 更新localStorage
   }
 
   useEffect(() => {
