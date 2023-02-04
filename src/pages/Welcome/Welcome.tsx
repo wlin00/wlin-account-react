@@ -35,6 +35,11 @@ export const WelcomeLayout: React.FC = () => {
     nav(linkMap[location.pathname as keyof IWelcomePath])
   }
 
+  // 用户看过首次动画后，localStorage存储hasRead，下次进入后直接到 /start 页
+  const onSkip = () => {
+    localStorage.setItem('hasRead', '1')
+  }
+
   useEffect(() => {
     if (swiping.current && direction === 'left') {
       if (isSwiping.current) { return }
@@ -87,9 +92,16 @@ export const WelcomeLayout: React.FC = () => {
         })     
       }</main>
       <footer pb-5px shrink-0 text-center text-24px text-white grid grid-cols-3 grid-rows-1>
-        {/* flex布局 - grid-area属性用法：《 grid-area:'从第几行开始/ 从第几列开始 / 从第几行结束 / 从第几列结束' 》 */}
-        <Link style={{ gridArea: '1 / 2 / 2 / 3' }} to={linkMap[location.pathname as keyof IWelcomePath]}>下一页</Link>
-        <Link style={{ gridArea: '1 / 3 / 2 / 4' }} to="/start">跳过</Link>
+        { location.pathname !== '/welcome/4' 
+          ? <>
+            {/* flex布局 - grid-area属性用法：《 grid-area:'从第几行开始/ 从第几列开始 / 从第几行结束 / 从第几列结束' 》 */}
+            <Link style={{ gridArea: '1 / 2 / 2 / 3' }} to={linkMap[location.pathname as keyof IWelcomePath]}>下一页</Link>
+            <Link style={{ gridArea: '1 / 3 / 2 / 4' }} onClick={onSkip} to="/start">跳过</Link>
+          </>
+          : <>
+            <Link style={{ gridArea: '1 / 3 / 2 / 4' }} onClick={onSkip} to="/start">开始</Link>
+          </>
+        }
       </footer>
     </div>
   )
