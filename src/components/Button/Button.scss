@@ -1,0 +1,13 @@
+.custom-button {
+  &.important {
+    // color: red;
+  }
+  &.danger {
+    background: var(--button-bg-danger);
+    border-color: var(--button-bg-danger);
+  }
+  &[disabled] {
+    opacity: .5;
+    cursor: not-allowed
+  }
+}
