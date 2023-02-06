@@ -7,10 +7,11 @@ import { Welcome4 } from '../pages/Welcome/components/Welcome4';
 import { WelcomeLayout } from '../pages/Welcome/Welcome';
 import { NotFoundPage } from '../components/NotFoundPage';
 import { BeforeRootEnter } from '../components/BeforeRootEnter';
+import { Home } from '../pages/Home/home';
 
 export const routes = createBrowserRouter([
   { path: '/', element: <BeforeRootEnter/>, errorElement: <NotFoundPage /> },
-  { path: 'start', element: <div>start</div> },
+  { path: 'start', element: <Home /> },
   {
     path: 'welcome',
     element: <WelcomeLayout />,
