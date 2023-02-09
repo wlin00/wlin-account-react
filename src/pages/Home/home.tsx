@@ -5,16 +5,16 @@ import { useMemo } from 'react';
 const COUNTDOWN = 10
 
 export const Home: React.FC = () => {
-  const { countdown, isRunning, handleStart } = useCountDown(COUNTDOWN)
+  const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
   const countDownBtnDisplay = useMemo(() => {
-    return !isRunning ? '发送验证码' : `${countdown}秒后可重新发送`
-  }, [countdown, isRunning])
+    return !pending ? '发送验证码' : `${count}秒后可重新发送`
+  }, [count, pending])
   const handleClick = () => {
-    handleStart() // 开始倒计时
+    startCountDown() // 开始倒计时
   }
   return (
     <div>
-      <Button disabled={isRunning} onClick={handleClick} type="button">{countDownBtnDisplay}</Button>
+      <Button disabled={pending} onClick={handleClick} type="button">{countDownBtnDisplay}</Button>
     </div>
   )
 }

@@ -1,37 +1,39 @@
-import { useState, useEffect } from 'react';
-// react 倒计时hook，可供用户手动开启开关倒计时
-export const useCountDown = (second: number = 60) => {
-  const [countdown, setCountdown] = useState(second);
-  const [isRunning, setIsRunning] = useState(false); // isRunning初始值 - 控制倒计时是否自动开始
-  const handleStart = () => {
-    setIsRunning(true);
-  };
-  const handleStop = () => {
-    setIsRunning(false);
-  };
-  const handleReset = () => {
-    setCountdown(second);
-    setIsRunning(false);
-  };
+import { useState, useEffect } from 'react'
+export const useCountDown = (seconds: number = 60) => {
+  const [count, setCount] = useState<number>(seconds)
+  const [pending, setPending] = useState<boolean>(false)
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
+  const startCountDown = () => {
+    setPending(true)
+  }
+  const stopCountDown = () => {
+    setPending(false)
+  }
+  const resetCountDown = () => {
+    setPending(false)
+    setCount(seconds)
+  }
   useEffect(() => {
-    let timer: null | NodeJS.Timeout = null;
-    if (!isRunning) { // timer && clearTimeout(timer)
+    if (!pending) {
       return
     }
-    if (countdown < 1) {
-      handleReset()
+    if (count < 1) {
+      resetCountDown()
       return
     }
-    timer = setTimeout(() => {
-      setCountdown(countdown - 1);
-    }, 1000);
-    return () => clearTimeout(timer!);
-  }, [isRunning, countdown]);
+    setTimer(
+      setTimeout(() => {
+        setCount(count - 1)
+      }, 1000)
+    )
+    return () => clearTimeout(timer!)
+  }, [count, pending])
+
   return {
-    countdown,
-    isRunning,
-    handleStart,
-    handleStop,
-    handleReset
+    count,
+    pending,
+    startCountDown,
+    stopCountDown,
+    resetCountDown,
   }
 }
