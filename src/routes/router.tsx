@@ -8,10 +8,12 @@ import { WelcomeLayout } from '../pages/Welcome/Welcome';
 import { NotFoundPage } from '../components/NotFoundPage';
 import { BeforeRootEnter } from '../components/BeforeRootEnter';
 import { Home } from '../pages/Home/home';
+import { SwrDemo } from '../components/SwrDemo';
 
 export const routes = createBrowserRouter([
   { path: '/', element: <BeforeRootEnter/>, errorElement: <NotFoundPage /> },
   { path: 'start', element: <Home /> },
+  { path: 'test', element: <SwrDemo /> },
   {
     path: 'welcome',
     element: <WelcomeLayout />,
