@@ -1,20 +1,19 @@
 import * as React from 'react'
-import { Button } from '../../components/Button/Button';
-import { useCountDown } from '../../hooks/useCountDown';
-import { useMemo } from 'react';
-const COUNTDOWN = 10
+import pig from '../../assets/icons/pig.svg'
+import add from '../../assets/icons/add.svg'
 
 export const Home: React.FC = () => {
-  const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
-  const countDownBtnDisplay = useMemo(() => {
-    return !pending ? '发送验证码' : `${count}秒后可重新发送`
-  }, [count, pending])
-  const handleClick = () => {
-    startCountDown() // 开始倒计时
-  }
   return (
     <div>
-      <Button disabled={pending} onClick={handleClick} type="button">{countDownBtnDisplay}</Button>
+      <div flex justify-center items-center py-120px>
+        <img src={pig} w='128px' h="130px" />
+      </div>
+      <div px-16px text-2xl>
+        <button h-48px w="100%" bg="#39f" b-none text-white rounded-8px>开始记账</button>
+      </div>
+      <button p-4px w-56px h-56px bg="#39f" rounded="50%" b-none text-white text-6xl fixed bottom-16px right-16px>
+        <img src={add} max-w="100%" max-h="100%" />
+      </button>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import { Welcome4 } from '../pages/Welcome/components/Welcome4';
 import { WelcomeLayout } from '../pages/Welcome/Welcome';
 import { NotFoundPage } from '../components/NotFoundPage';
 import { BeforeRootEnter } from '../components/BeforeRootEnter';
-import { Home } from '../pages/Home/home';
+import { Home } from '../pages/Home/Home';
 import { SwrDemo } from '../components/SwrDemo';
 
 export const routes = createBrowserRouter([
