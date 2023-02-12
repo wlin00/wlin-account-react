@@ -5,6 +5,7 @@ import pig from '../../assets/icons/pig.svg'
 import add from '../../assets/icons/add.svg'
 import { useTitle } from '../../hooks/useTitle';
 import { ajax } from '../../utils/ajax';
+import { Item, Resource, Resources, User } from '../../utils/types';
 
 interface Props {
   title?: string
@@ -12,14 +13,16 @@ interface Props {
 
 export const Home: React.FC<Props> = (props) => {
   useTitle(props.title)
-  const { data: meData, error: meError } = useSWR('/api/v1/me', (path) => ajax.get(path))
+  const { data: meData, error: meError } = useSWR('/api/v1/me', async (path) => (await ajax.get<Resource<User>>(path)).data.resource)
   const { data: itemsData, error: itemsError } = useSWR(
     meData ? '/api/v1/items': null,  // 等待上一个swr请求的数据回来后才发起第二个
-    (path) => { // api请求的回调
-      return ajax.get(path)
-    }
+    async (path) => (await ajax.get<Resources<Item>>(path)).data // api请求的回调
   )
   console.log('meData', meData, 'itemsData', itemsData, 'itemsError', itemsError)
+
+  // const isLoadingMe = !meData && !meError
+  // const isLoadingItem = !itemsData && !itemsError
+  // console.log('loading1', isLoadingMe, 'loading2', isLoadingItem)
 
   return (
     <div>
