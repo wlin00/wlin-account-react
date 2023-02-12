@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 import Unocss from 'unocss/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  define: {
+    isDev: command === 'serve' // npm run dev --serve 启动本地调试环境，便于本地开启mock系统
+  },
   base: '/',
   plugins: [
     Unocss(),
@@ -18,4 +21,4 @@ export default defineConfig({
     }
 
   }
-})
+}))
