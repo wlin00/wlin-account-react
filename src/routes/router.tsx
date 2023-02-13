@@ -9,6 +9,7 @@ import { NotFoundPage } from '../components/NotFoundPage';
 import { BeforeRootEnter } from '../components/BeforeRootEnter';
 import { Home } from '../pages/Home';
 import { SwrDemo } from '../components/SwrDemo';
+import { ItemsPage } from '../pages/ItemsPage/ItemsPage';
 
 export const routes = createBrowserRouter([
   { path: '/', element: <BeforeRootEnter/>, errorElement: <NotFoundPage /> },
@@ -37,5 +38,5 @@ export const routes = createBrowserRouter([
       },
     ]
   },
-  { path: '/items', element: <div>items</div> },
+  { path: '/items', element: <ItemsPage /> },
 ])

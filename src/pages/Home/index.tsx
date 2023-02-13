@@ -8,6 +8,7 @@ import { Item, Resource, Resources, User } from '../../utils/types';
 import { Loading } from '../../components/Loading/Loading';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
 import { Icon } from '../../components/CustomIcon';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   title?: string
@@ -22,8 +23,14 @@ export const Home: React.FC<Props> = (props) => {
   )
   const isLoadingMe = !meData && !meError // 查询《我的详情》loading
   const isLoadingItem = meData && !itemsData && !itemsError // 查询《账单列表》loading
+  const nav = useNavigate() 
+
   if (isLoadingMe || isLoadingItem) {
     return <Loading message='加载中...' />
+  }
+
+  const handleStart = () => {
+    nav('/items')
   }
 
   return (
@@ -33,9 +40,9 @@ export const Home: React.FC<Props> = (props) => {
         {/* <Icon name="add" className='w-128px h-130px' /> */}
       </div>
       <div px-16px text-2xl>
-        <button h-48px w="100%" bg="#39f" b-none text-white rounded-8px>开始记账</button>
+        <button onClick={handleStart} h-48px w="100%" bg="#39f" b-none text-white rounded-8px>开始记账</button>
       </div>
-      <AddItemFloatButton />
+      <AddItemFloatButton onClick={handleStart} />
     </div>
   )
 }
