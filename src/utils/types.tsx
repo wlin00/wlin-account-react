@@ -60,3 +60,15 @@ export type User = {
   name: string,
   email: string
 }
+
+export interface ICurrentTab {
+  thisMonth: string
+  lastMonth: string
+  thisYear: string
+  custom: string
+}
+
+export type TimeTabItem = {
+  key: keyof ICurrentTab
+  text: string
+}
