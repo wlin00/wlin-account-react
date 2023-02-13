@@ -7,7 +7,7 @@ import { ajax } from '../../utils/ajax';
 import { Item, Resource, Resources, User } from '../../utils/types';
 import { Loading } from '../../components/Loading';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
-import { Icon } from '../../components/CustomIcon/Icon';
+import { Icon } from '../../components/CustomIcon';
 
 interface Props {
   title?: string

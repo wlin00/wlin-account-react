@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { routes } from './routes/router';
-import 'virtual:uno.css'
 import './global.scss'
+import 'virtual:uno.css'
 import './assets/stylesheets/vars.scss'
 import 'virtual:svgsprites'
 

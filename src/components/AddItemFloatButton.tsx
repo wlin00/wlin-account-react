@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Icon } from './CustomIcon/Icon';
+import { Icon } from './CustomIcon';
 
 export const AddItemFloatButton: React.FC = () => {
   return (

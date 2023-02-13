@@ -1,5 +1,5 @@
 import * as React from 'react'
-import s from './Icon.module.scss'
+// import s from './Icon.module.scss'
 interface Props {
   onClick?: () => void,
   name?: string,
@@ -11,7 +11,7 @@ export const Icon: React.FC<Props> = ({ onClick, name = 'add', className }) => {
     <svg
       // @ts-ignore
       onClick={onClick || null}
-      className={[s.icon, className].join(' ')}
+      className={['wlin-custom-icon', className].join(' ')}
     >
       <use xlinkHref={'#' + name}></use>
     </svg>
