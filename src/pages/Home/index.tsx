@@ -5,7 +5,7 @@ import pig from '../../assets/icons/pig.svg'
 import { useTitle } from '../../hooks/useTitle';
 import { ajax } from '../../utils/ajax';
 import { Item, Resource, Resources, User } from '../../utils/types';
-import { Loading } from '../../components/Loading';
+import { Loading } from '../../components/Loading/Loading';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
 import { Icon } from '../../components/CustomIcon';
 
@@ -23,7 +23,7 @@ export const Home: React.FC<Props> = (props) => {
   const isLoadingMe = !meData && !meError // 查询《我的详情》loading
   const isLoadingItem = meData && !itemsData && !itemsError // 查询《账单列表》loading
   if (isLoadingMe || isLoadingItem) {
-    return <Loading />
+    return <Loading message='加载中...' />
   }
 
   return (
