@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import Unocss from 'unocss/vite'
-
+import { svgsprites } from './vite_plugins/svgsprites'
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   define: {
@@ -11,6 +11,7 @@ export default defineConfig(({ command }) => ({
   plugins: [
     Unocss(),
     react(),
+    svgsprites(),
   ],
   server: { // 开发环境反向代理到云服务器
     host: '0.0.0.0',

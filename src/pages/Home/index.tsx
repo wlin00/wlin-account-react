@@ -7,6 +7,7 @@ import { ajax } from '../../utils/ajax';
 import { Item, Resource, Resources, User } from '../../utils/types';
 import { Loading } from '../../components/Loading';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
+import { Icon } from '../../components/CustomIcon/Icon';
 
 interface Props {
   title?: string
@@ -29,6 +30,7 @@ export const Home: React.FC<Props> = (props) => {
     <div>
       <div flex justify-center items-center py-120px>
         <img src={pig} w='128px' h="130px" />
+        {/* <Icon name="add" className='w-128px h-130px' /> */}
       </div>
       <div px-16px text-2xl>
         <button h-48px w="100%" bg="#39f" b-none text-white rounded-8px>开始记账</button>

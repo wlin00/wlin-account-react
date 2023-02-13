@@ -1,18 +1,19 @@
 import * as React from 'react'
-
+import s from './Icon.module.scss'
 interface Props {
+  onClick?: () => void,
   name?: string,
-  onClick?: (e: MouseEvent) => void
+  className?: string
 }
 
-export const Icon: React.FC<Props> = ({ onClick, name }: any) => {
+export const Icon: React.FC<Props> = ({ onClick, name = 'add', className }) => {
   return (
-    <svg className={'w-1.6em h-1.6em'} onClick={onClick} >
+    <svg
+      // @ts-ignore
+      onClick={onClick || null}
+      className={[s.icon, className].join(' ')}
+    >
       <use xlinkHref={'#' + name}></use>
     </svg>
   )
-}
-
-Icon.defaultProps = {
-  name: 'add'
 }
