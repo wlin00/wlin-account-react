@@ -10,11 +10,12 @@ export type Item = {
   id: number
   user_id: number
   name: string,
+  happen_at: string,
   sign: string,
   kind: 'expenses' | 'income'
   amount: number,
   tags_id: Array<number>,
-  isTouchMove: boolean | undefined,
+  isTouchMove?: boolean | undefined,
   created_at: string,
   tags: Tag[],
   // "note": null,

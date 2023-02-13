@@ -1,0 +1,18 @@
+.summaryWrap {
+  > li {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  
+    &:nth-child(1) {
+      color: var(--total-income);
+    }
+    &:nth-child(2) {
+      color: var(--total-expenses);
+    }
+    &:nth-child(3) {
+      color: #fff;
+    }
+  }
+}

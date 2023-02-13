@@ -40,7 +40,7 @@ export const Home: React.FC<Props> = (props) => {
         {/* <Icon name="add" className='w-128px h-130px' /> */}
       </div>
       <div px-16px text-2xl>
-        <button onClick={handleStart} h-48px w="100%" bg="#39f" b-none text-white rounded-8px>开始记账</button>
+        <button onClick={handleStart} wlin-custom-button>开始记账</button>
       </div>
       <AddItemFloatButton onClick={handleStart} />
     </div>
