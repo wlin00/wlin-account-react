@@ -6,10 +6,10 @@ interface Props {
 }
 
 export const Topnav: React.FC<Props> = ({ title = 'Wlin记账' }) => {
-  const { setVisible } = useMenuStore()
+  const { setVisible, visible } = useMenuStore()
   const handleClick = () => {
     // 点击后通信zustand仓库，唤起左侧滑动菜单组件
-    setVisible(true)
+    setVisible(!visible)
   }
   return (
     <div text-white flex items-center p-16px>
