@@ -7,7 +7,7 @@ interface Props {
 }
 
 const list = [
-  { path: '/items/list', name: '我的记账', icon: 'home' },
+  { path: '/items', name: '我的记账', icon: 'home' },
   { path: '/statistics', name: '统计图表', icon: 'charts' },
   // { path: '/export', name: '导出数据', icon: 'export' },
   { path: '/notify', name: '记账提醒', icon: 'notify' },
@@ -15,15 +15,22 @@ const list = [
 
 export const MenuList: React.FC<Props> = ({ className }) => {
   const nav = useNavigate()
+  const currentPathName = location.pathname
   return (
     <ul
       bg-white text-20px py-16px children-flex children-items-center children-px-16px children-py-8px children-mb-4px
       className={className}
     >{
       list.map((item) => (
-        <li key={item.icon} onClick={() => nav(item.path)}>
+        <li 
+          key={item.icon} 
+          onClick={() => nav(item.path)}
+        >
           <Icon name={item.icon} />
-          <span m-l-10px>{item.name}</span>
+          <span 
+            m-l-10px
+            className={currentPathName === item.path ? 'text-#39f' : ''}
+          >{item.name}</span>
         </li>
       ))
     }</ul>
