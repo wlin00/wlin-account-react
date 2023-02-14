@@ -7,8 +7,11 @@ import { ItemsList } from './components/ItemsList/ItemsList';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
 import { useState } from 'react';
 import { ICurrentTab, Item } from '../../utils/types';
+import { TopMenu } from '../../components/TopMenu';
+import { useMenuStore } from '../../stores/useMenuStore';
 
 export const ItemsPage: React.FC = () => {
+  const { visible } = useMenuStore()
   const [currentTab, setCurrentTab] = useState<keyof ICurrentTab>('thisMonth')
   const [list, setList] = useState<Item[]>([
     {
@@ -44,6 +47,7 @@ export const ItemsPage: React.FC = () => {
       <ItemsSummary />
       <ItemsList data={list} />
       <AddItemFloatButton />
+      { visible ? <TopMenu /> : null }
     </div>
   )
 }
