@@ -7,7 +7,7 @@ import { ItemsList } from './components/ItemsList/ItemsList';
 import { AddItemFloatButton } from '../../components/AddItemFloatButton';
 import { useState } from 'react';
 import { ICurrentTab, Item } from '../../utils/types';
-import { TopMenu } from '../../components/TopMenu';
+import { TopMenu } from '../../components/TopMenu/TopMenu';
 import { useMenuStore } from '../../stores/useMenuStore';
 
 export const ItemsPage: React.FC = () => {
