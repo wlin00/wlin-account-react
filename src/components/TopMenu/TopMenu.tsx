@@ -15,7 +15,7 @@ export const TopMenu: React.FC = () => {
       onClick={handleMaskClick}
     />
     <div 
-      fixed top-0 left-0 w="70vw" max-w-20em h-screen flex flex-col b-1px b="#ddd" z="[calc(var(--z-menu))]"
+      fixed top-0 left-0 w="70vw" max-w-20em h-screen flex flex-col b-r-1px b="#ddd" z="[calc(var(--z-menu))]"
     >
       <CurrentUser className='grow-0 shrink-0' />
       <MenuList className="grow-1 shrink-1" />
