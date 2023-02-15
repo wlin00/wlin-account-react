@@ -11,7 +11,6 @@ import { TopMenu } from '../../components/TopMenu/TopMenu';
 import { useMenuStore } from '../../stores/useMenuStore';
 
 export const ItemsPage: React.FC = () => {
-  const { visible } = useMenuStore()
   const [currentTab, setCurrentTab] = useState<keyof ICurrentTab>('thisMonth')
   const [list, setList] = useState<Item[]>([
     {
@@ -47,7 +46,7 @@ export const ItemsPage: React.FC = () => {
       <ItemsSummary />
       <ItemsList data={list} />
       <AddItemFloatButton />
-      { visible ? <TopMenu /> : null }
+      <TopMenu />
     </div>
   )
 }
