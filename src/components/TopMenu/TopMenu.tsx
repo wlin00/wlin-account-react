@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export const TopMenu: React.FC = () => {
   const { setVisible, visible } = useMenuStore()
-  const [maskVisible, setMaskVisible] = useState(visible)
+  const [maskVisible, setMaskVisible] = useState(visible) // maskVisible变量 用于在蒙层动画淡出时，opacity在<0.1的情况下再隐藏蒙层（确保淡出动画的完整性）
   const handleMaskClick = () => {
     setVisible(false)
   }
