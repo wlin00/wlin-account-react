@@ -44,7 +44,7 @@ export const ItemsPage: React.FC = () => {
         <TimeRangePicker value={currentTab} onChange={setCurrentTab} />
       </div>
       <ItemsSummary />
-      <ItemsList data={list} />
+      <ItemsList />
       <AddItemFloatButton />
       <TopMenu />
     </div>

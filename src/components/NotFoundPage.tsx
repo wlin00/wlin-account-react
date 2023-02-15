@@ -3,7 +3,7 @@ export const NotFoundPage: React.FC = () => {
   return (
     <div relative min-h-500px>
       <div 
-        absolute flex items-center justify-center min-h-300px flex-col
+        absolute flex-c min-h-300px flex-col
         className="top-50% left-50% transform-translate--50%"
       >  
         <img src={emptyPng} inline-flex w-300px h-200px />
