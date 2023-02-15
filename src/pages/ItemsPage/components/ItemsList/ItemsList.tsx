@@ -26,7 +26,7 @@ export const ItemsList: React.FC<Props> = () => {
   )
 
   if (!data) {
-    return <span>暂无数据</span>
+    return <div flex-c text="#333">暂无数据</div>
   }
 
   // 判断是否还有更多数据 (page - 1) * per_page + resource.length < count
@@ -62,11 +62,11 @@ export const ItemsList: React.FC<Props> = () => {
           )
         })
       }</ol>
-      <div p-16px>
+      <div p-16px flex-c>
         { hasMore ? (
           <button wlin-custom-button onClick={handleLoadMore}>加载更多</button>
         ) : (
-          <span flex-c>暂无数据</span>
+          <span text="#333">暂无数据</span>
         ) }
       </div>
   </>
