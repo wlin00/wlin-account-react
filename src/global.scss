@@ -1,5 +1,5 @@
 :root {
-  --un-shadow-color: red;
+  --un-shadow-color: rgba(0,0,0,0.25);
 }
 *{margin:0; padding: 0; box-sizing: border-box;}
 *::after, *::before{ box-sizing: border-box; }
@@ -21,4 +21,7 @@ button, input {
   fill: currentColor;
   width: 1.2em;
   height: 1.2em;
+}
+:focus {
+  outline: none;
 }
