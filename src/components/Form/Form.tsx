@@ -1,8 +1,6 @@
 import * as React from 'react'
-import { useMemo, MutableRefObject, useImperativeHandle, useEffect, ReactNode } from 'react';
-import { Button } from '../Button/Button';
+import { useMemo, MutableRefObject, ReactNode } from 'react';
 import s from './Form.module.scss'
-import { useCountDown } from '../../hooks/useCountDown';
 
 export type EventRef = {
   startCountDown: () => void
@@ -71,11 +69,6 @@ export const FormItem: React.FC<FormItemProps> = ({
             className={[s.formItem, s.input, s.validationCodeInput, `${errorItem?.length ? s.error : ''}`].join(' ')}
           />
           {action ? action : null}
-          {/* <Button
-            onClick={handleSendValidationCode}
-            disabled={pending}
-            className={[s.formItem, s.button, s.validationCodeButton].join(' ')}
-          >{countDownBtnDisplay}</Button> */}
         </>  
       default:
         return children 

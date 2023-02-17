@@ -6,7 +6,7 @@ import { EventRef, Form, FormItem } from '../../components/Form/Form';
 import { Button } from '../../components/Button/Button';
 import { useState, useRef, useMemo } from 'react';
 import { FormData } from '../../utils/types';
-import { FormError, validate, Rules, Rule } from '../../utils/validate';
+import { FormError, validate, Rules, Rule, hasError } from '../../utils/validate';
 import { ajax } from '../../utils/ajax';
 import { useCountDown } from '../../hooks/useCountDown';
 
@@ -15,7 +15,7 @@ const rules: Rules<FormData> = [
   { key: 'email', type: 'required', message: '请输入邮箱'  },
   { key: 'email', type: 'pattern', message: '请输入正确的邮箱格式', regex: /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/ },
   { key: 'code', type: 'required', message: '请输入验证码'  },
-  { key: 'code', type: 'pattern', message: '验证码长度不大于6', regex: /^.{1,6}$/ },
+  { key: 'code', type: 'pattern', message: '请输入6位数字验证码', regex: /^\d{6}$/ },
 ]
 
 export const SigninPage: React.FC = () => {
@@ -24,7 +24,10 @@ export const SigninPage: React.FC = () => {
     code: ''
   })
   const formRef = useRef({} as EventRef)
-  const [errors, setErrors] = useState<FormError<FormData>>({})
+  const [errors, setErrors] = useState<FormError<FormData>>({
+    email: [],
+    code: [],
+  })
   const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
 
   const countDownBtnDisplay = useMemo(() => {
@@ -34,8 +37,17 @@ export const SigninPage: React.FC = () => {
   const handleIconClick = () => {
     history.back()
   }
-  const handleSubmit = () => {
+  const handleSubmit = (e?: any) => {
+    e?.preventDefault()
+    // 调用表单校验方法
     handleFormCheck(formData)
+    // 校验表单是否还有错误，如果有则不发送请求
+    setErrors((newErrors) => {
+      if (!hasError(newErrors)) {
+        console.log('pass & submit')
+      }
+      return newErrors
+    })
   }
   const handleFormChange = (validationCode: keyof FormData, value: string | number) => {
     setFormData((formData: any) => ({ ...formData, [`${validationCode}`]: value }))
