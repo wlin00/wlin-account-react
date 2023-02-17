@@ -11,6 +11,10 @@ export default defineConfig({
     'inline-flex-c': 'inline-flex justify-center items-center',
   },
   safelist: [],
+  rules: [
+    // var(--vh-offset, 0px) 会由当前vhCheck动态计算默认为0px 用于解决部分浏览器的底部状态条问题
+    ['h-screen', {height: 'calc(100vh - var(--vh-offset, 0px))'}] 
+  ],
   presets: [
     presetUno(),
     presetAttributify(),
