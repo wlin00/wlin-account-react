@@ -73,3 +73,8 @@ export type TimeTabItem = {
   key: keyof ICurrentTab
   text: string
 }
+
+export type FormData = {
+  email: string,
+  code: string
+}

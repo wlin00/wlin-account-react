@@ -10,7 +10,9 @@ export const ajax = {
   get: <T>(path: string) => {
     return axios.get<T>(path)
   },
-  post: () => {},
+  post: <T>(path: string, params: object = {}) => {
+    return axios.post<T>(path, params)
+  },
   patch: () => {},
   delete: () => {},
 }
