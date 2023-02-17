@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { JSONValue } from './types';
 
 axios.defaults.baseURL = isDev 
   ? '/' // 测试环境 
@@ -10,8 +11,8 @@ export const ajax = {
   get: <T>(path: string) => {
     return axios.get<T>(path)
   },
-  post: <T>(path: string, params: object = {}) => {
-    return axios.post<T>(path, params)
+  post: <T>(path: string, data: JSONValue) => {
+    return axios.post<T>(path, data)
   },
   patch: () => {},
   delete: () => {},

@@ -78,3 +78,5 @@ export type FormData = {
   email: string,
   code: string
 }
+
+export type JSONValue = string | number | boolean | null | { [k: string]: JSONValue } | JSONValue[]

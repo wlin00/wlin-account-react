@@ -23,6 +23,7 @@ export const SigninPage: React.FC = () => {
     email: '',
     code: ''
   })
+  const isCountDownFlag = useRef(false)
   const formRef = useRef({} as EventRef)
   const [errors, setErrors] = useState<FormError<FormData>>({
     email: [],
@@ -37,14 +38,14 @@ export const SigninPage: React.FC = () => {
   const handleIconClick = () => {
     history.back()
   }
-  const handleSubmit = (e?: any) => {
+  const handleSubmit = async (e?: any) => {
     e?.preventDefault()
     // 调用表单校验方法
     handleFormCheck(formData)
     // 校验表单是否还有错误，如果有则不发送请求
     setErrors((newErrors) => {
       if (!hasError(newErrors)) {
-        console.log('pass & submit')
+        console.log('submit')
       }
       return newErrors
     })
@@ -82,10 +83,16 @@ export const SigninPage: React.FC = () => {
   }
   const handleSendValidationCode = async () => {
     try { 
-      // await ajax.post('/api/v1/validation_codes', {  email: formData.email })
+      if (isCountDownFlag.current) {
+        return
+      }
+      isCountDownFlag.current = true
+      await ajax.post('/api/v1/validation_codes', {  email: formData.email })
+      isCountDownFlag.current = false
       // 调用验证码接口后，开始60秒倒计时
       startCountDown()
     } catch(err) {
+      isCountDownFlag.current = false
     }
   }
 
