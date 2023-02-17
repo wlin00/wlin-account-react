@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useMemo, MutableRefObject, useImperativeHandle, useEffect } from 'react';
+import { useMemo, MutableRefObject, useImperativeHandle, useEffect, ReactNode } from 'react';
 import { Button } from '../Button/Button';
 import s from './Form.module.scss'
 import { useCountDown } from '../../hooks/useCountDown';
@@ -22,13 +22,12 @@ interface FormItemProps {
   options?: { value: string, text: string }[],
   children?: any,
   ref?: any,
-  eventRef?: MutableRefObject<EventRef>
+  eventRef?: MutableRefObject<EventRef>,
+  action?: ReactNode,
   onChange?: (val: string | number) => void,
   onValidate?: (validationCode: string | undefined) => void,
-  onCountDownValidate?: () => void
 }
 
-const COUNTDOWN = 10
 
 export const Form: React.FC<FormProps> = ({ onSubmit, children }) => {
   return (
@@ -40,25 +39,14 @@ export const Form: React.FC<FormProps> = ({ onSubmit, children }) => {
 }
 
 export const FormItem: React.FC<FormItemProps> = ({ 
-  value, label, validateCode, placeholder, type, errors = {}, errorItem = [], options = [], children, eventRef,
-  onChange, onValidate, onCountDownValidate,
+  value, label, validateCode, placeholder, type, errors = {}, errorItem = [], options = [], children, eventRef, action,
+  onChange,
  }) => {
-  const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
-  useImperativeHandle(eventRef, () => ({
-    startCountDown: () => startCountDown()
-  }))
+
 
   const handleInputText = (e: any) => { // text类型FormItem的input操作
     onChange?.(e.target.value)
   }
-
-  const handleSendValidationCode = () => { // send validation code
-    onCountDownValidate?.()
-  }
-
-  const countDownBtnDisplay = useMemo(() => {
-    return !pending ? '请输入验证码' : `${count}秒后可重新发送`
-  }, [pending, count])
 
   // 获取当前应渲染的formItem的ReactDom
   const content = useMemo(() => {
@@ -82,16 +70,17 @@ export const FormItem: React.FC<FormItemProps> = ({
             onInput={handleInputText}
             className={[s.formItem, s.input, s.validationCodeInput, `${errorItem?.length ? s.error : ''}`].join(' ')}
           />
-          <Button
+          {action ? action : null}
+          {/* <Button
             onClick={handleSendValidationCode}
             disabled={pending}
             className={[s.formItem, s.button, s.validationCodeButton].join(' ')}
-          >{countDownBtnDisplay}</Button>
+          >{countDownBtnDisplay}</Button> */}
         </>  
       default:
         return children 
     }
-  }, [type, value, errorItem, placeholder, options, validateCode, label, pending, count])
+  }, [type, value, errorItem, placeholder, options, validateCode, label])
 
   return (
     <div className={s.formRow}>

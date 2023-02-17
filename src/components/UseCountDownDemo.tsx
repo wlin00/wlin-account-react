@@ -4,7 +4,7 @@ import { useCountDown } from '../hooks/useCountDown';
 import { Button } from './Button/Button';
 const COUNTDOWN = 10
 
-export const Home: React.FC = () => {
+export const UseCountDownDemo: React.FC = () => {
   const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
   const countDownBtnDisplay = useMemo(() => {
     return !pending ? '发送验证码' : `${count}秒后可重新发送`

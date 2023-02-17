@@ -11,11 +11,12 @@ import { Home } from '../pages/Home';
 import { SwrDemo } from '../components/SwrDemo';
 import { ItemsPage } from '../pages/ItemsPage/ItemsPage';
 import { SigninPage } from '../pages/SigninPage/SigninPage';
+import { UseCountDownDemo } from '../components/UseCountDownDemo';
 
 export const routes = createBrowserRouter([
   { path: '/', element: <BeforeRootEnter/>, errorElement: <NotFoundPage /> },
   { path: 'start', element: <Home title='首页' /> },
-  { path: 'test', element: <SwrDemo /> },
+  { path: 'test', element: <UseCountDownDemo /> },
   {
     path: 'welcome',
     element: <WelcomeLayout />,

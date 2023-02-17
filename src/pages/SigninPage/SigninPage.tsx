@@ -4,11 +4,13 @@ import { Topnav } from '../../components/Topnav/Topnav';
 import { Icon } from '../../components/CustomIcon';
 import { EventRef, Form, FormItem } from '../../components/Form/Form';
 import { Button } from '../../components/Button/Button';
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { FormData } from '../../utils/types';
 import { FormError, validate, Rules, Rule } from '../../utils/validate';
 import { ajax } from '../../utils/ajax';
+import { useCountDown } from '../../hooks/useCountDown';
 
+const COUNTDOWN = 60
 const rules: Rules<FormData> = [
   { key: 'email', type: 'required', message: '请输入邮箱'  },
   { key: 'email', type: 'pattern', message: '请输入正确的邮箱格式', regex: /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/ },
@@ -23,6 +25,12 @@ export const SigninPage: React.FC = () => {
   })
   const formRef = useRef({} as EventRef)
   const [errors, setErrors] = useState<FormError<FormData>>({})
+  const { count, pending, startCountDown } = useCountDown(COUNTDOWN)
+
+  const countDownBtnDisplay = useMemo(() => {
+    return !pending ? '请输入验证码' : `${count}秒后可重新发送`
+  }, [pending, count])
+
   const handleIconClick = () => {
     history.back()
   }
@@ -50,19 +58,6 @@ export const SigninPage: React.FC = () => {
       setErrors(currentError)
     }
   }
-
-
-  const handleSendValidationCode = async () => {
-    try { 
-      // await ajax.post('/api/v1/validation_codes', {  email: formData.email })
-      // 调用验证码接口后，开始60秒倒计时
-      // validationCodeRef.value?.startCountDown()
-      console.log('ccc', formRef.current)
-      formRef.current?.startCountDown()
-    } catch(err) {
-    }
-  }
-
   const handleCountDownValidate = () => {
     handleFormCheck(formData, 'email')
     setErrors((newErrors: any) => {
@@ -71,9 +66,17 @@ export const SigninPage: React.FC = () => {
         handleSendValidationCode()
       }
       return newErrors
-    })
-    
+    })    
   }
+  const handleSendValidationCode = async () => {
+    try { 
+      // await ajax.post('/api/v1/validation_codes', {  email: formData.email })
+      // 调用验证码接口后，开始60秒倒计时
+      startCountDown()
+    } catch(err) {
+    }
+  }
+
 
   return (
     <div className={s.wrap}>
@@ -110,7 +113,13 @@ export const SigninPage: React.FC = () => {
             errors={errors}
             errorItem={errors['code']}
             onValidate={(validateField: any) => handleFormCheck(validateField)}
-            onCountDownValidate={handleCountDownValidate}
+            action={
+              <Button
+                onClick={handleCountDownValidate}
+                disabled={pending}
+                className={['max-w-100%', 'min-h-[var(--input-min-height)]', 'w-100%', 'ml-16px'].join(' ')}
+              >{countDownBtnDisplay}</Button>
+            }
           />
           <div w="100%" box-border mt-60px>
             <Button onClick={handleSubmit} className="w-100%">登录</Button>
