@@ -10,39 +10,20 @@ import { ICurrentTab, Item } from '../../utils/types';
 import { TopMenu } from '../../components/TopMenu/TopMenu';
 import { useMenuStore } from '../../stores/useMenuStore';
 import { Icon } from '../../components/CustomIcon';
+import { useNavigate } from 'react-router-dom';
 
 export const ItemsPage: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<keyof ICurrentTab>('thisMonth')
   const { setVisible, visible } = useMenuStore()
-  const [list, setList] = useState<Item[]>([
-    {
-      id: 1,
-      name: 'test',
-      kind: 'income',
-      sign: 'sign1',
-      amount: 1000,
-      user_id: 1,
-      tags_id: [1],
-      happen_at: '2021-01-01T00:00:00.000Z',
-      created_at: '2021-01-01T00:00:00.000Z',
-      tags: []
-    }, {
-      id: 2,
-      name: 'test2',
-      kind: 'expenses',
-      sign: 'sign2',
-      amount: 1500,
-      user_id: 2,
-      tags_id: [2],
-      happen_at: '2020-01-01T00:00:00.000Z',
-      created_at: '2020-01-01T00:00:00.000Z',
-      tags: []
-    }
-  ])
+  const nav = useNavigate()
 
   const handleClick = () => {
     // 点击后通信zustand仓库，唤起左侧滑动菜单组件
     setVisible(!visible)
+  }
+
+  const handleAddBtnClick = () => {
+    nav('/items/create')
   }
   
   return (
@@ -55,7 +36,7 @@ export const ItemsPage: React.FC = () => {
       </div>
       <ItemsSummary />
       <ItemsList />
-      <AddItemFloatButton />
+      <AddItemFloatButton icon="add" onClick={handleAddBtnClick} />
       <TopMenu />
     </div>
   )
