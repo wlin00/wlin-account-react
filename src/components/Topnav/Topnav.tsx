@@ -1,7 +1,5 @@
 import * as React from 'react'
 import type { ReactNode } from 'react'
-import { Icon } from '../CustomIcon';
-import { useMenuStore } from '../../stores/useMenuStore';
 import s from './Topnav.module.scss'
 interface Props {
   title?: string,

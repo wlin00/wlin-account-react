@@ -69,6 +69,11 @@ export interface ICurrentTab {
   custom: string
 }
 
+export interface ICreateItemTab {
+  expenses: string
+  income: string
+}
+
 export type TimeTabItem = {
   key: keyof ICurrentTab
   text: string

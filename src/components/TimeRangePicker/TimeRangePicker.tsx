@@ -1,6 +1,6 @@
 import * as React from 'react'
-import s from './TimeRangePicker.module.scss'
 import { ICurrentTab, TimeTabItem } from '../../utils/types'
+import { Tabs } from '../Tabs/Tabs';
 
 interface Props {
   onChange: (value: keyof ICurrentTab) => void,
@@ -17,16 +17,6 @@ const tabArr: TimeTabItem[] = [
 export const TimeRangePicker: React.FC<Props> = ({ value, onChange }) => {
 
   return (
-    <ol
-      flex text-white children-px-24px children-py-12px
-    >
-      {tabArr.map((item: TimeTabItem) => (
-        <li 
-          key={item.key}
-          className={item.key === value ? s.selected: ''}
-          onClick={() => onChange(item.key)}
-        >{item.text}</li>
-      ))}
-    </ol>
+    <Tabs value={value} onChange={onChange} tabItems={tabArr} />
   )
 }
