@@ -11,3 +11,9 @@
     opacity: 0.5;
   }
 }
+.tabItem {
+  &.textCenter {
+    flex: 1;
+    text-align: center;
+  }
+}

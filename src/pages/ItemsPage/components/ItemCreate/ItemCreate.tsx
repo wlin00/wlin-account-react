@@ -3,8 +3,12 @@ import s from './ItemCreate.module.scss'
 import { Icon } from '../../../../components/Icon';
 import { Topnav } from '../../../../components/Topnav/Topnav';
 import { useNavigate } from 'react-router-dom';
+import { PaymentTabs } from '../../../../components/PaymentTabs/ PaymentTabs';
+import { useState } from 'react';
+import { IPaymentTab } from '../../../../utils/types';
 
 export const ItemCreate: React.FC = () => {
+  const [currentTab, setCurrentTab] = useState<keyof IPaymentTab>('expenses')
   const nav = useNavigate()
   const handleIconClick = () => {
     nav('/items')
@@ -16,6 +20,7 @@ export const ItemCreate: React.FC = () => {
         <Topnav title="记一笔" icon={
           <Icon name="left" className="text-white" onClick={handleIconClick} />
         } />
+        <PaymentTabs value={currentTab} onChange={setCurrentTab} />
       </div>
       <div className={s.wrapper}>
         123
