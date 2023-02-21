@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type Tag = {
   id: number
   user_id: number
@@ -77,11 +79,13 @@ export interface IPaymentTab {
 export type TimeTabItem = {
   key: keyof ICurrentTab
   text: string
+  element?: ReactNode
 }
 
 export type PaymentTabItem = {
   key: keyof IPaymentTab
   text: string
+  element?: ReactNode
 }
 
 export type FormData = {

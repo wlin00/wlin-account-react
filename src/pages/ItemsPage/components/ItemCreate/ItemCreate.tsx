@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { PaymentTabs } from '../../../../components/PaymentTabs/ PaymentTabs';
 import { useState } from 'react';
 import { IPaymentTab } from '../../../../utils/types';
+import { DateAndAmount } from '../DateAndAmount/DateAndAmount';
 
 export const ItemCreate: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<keyof IPaymentTab>('expenses')
@@ -23,7 +24,7 @@ export const ItemCreate: React.FC = () => {
         <PaymentTabs value={currentTab} onChange={setCurrentTab} />
       </div>
       <div className={s.wrapper}>
-        123
+        <DateAndAmount className="grow-0 shrink-0" />
       </div>
     </div>
   )
