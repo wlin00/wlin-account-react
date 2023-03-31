@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => ({
     Unocss(),
     react(),
     svgsprites({ noOptimizeList: [
-      'home', 'charts', 'notify', 'pig', 'clock', 'chart', 'cloud', 'mangosteen', 'left'
+      'home', 'charts', 'notify', 'pig', 'clock', 'chart', 'cloud', 'mangosteen', 'left', 'calendar'
     ] })
   ],
   server: { // 开发环境反向代理到云服务器

@@ -22,7 +22,7 @@ export const routes = createBrowserRouter([
     path: 'welcome',
     element: <WelcomeLayout />,
     children: [
-      { index: true, element: <RedirectPage/> },
+      { index: true, element: <RedirectPage/> }, // index: true表示默认路由
       {
         path: '1',
         element: <Welcome1 />
