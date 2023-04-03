@@ -17,3 +17,4 @@ root.render(
     <RouterProvider router={routes}></RouterProvider>
   </React.StrictMode>
 )
+export { div as rootDiv } 

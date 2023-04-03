@@ -3,6 +3,10 @@
   //   .itemsNewPage-menu-item{ flex: 1}
   // }
 }
+.wrapper {
+  box-sizing: border-box;
+  border-top: 1px solid #ddd;
+}
 .topWrap {
   // background: linear-gradient(to bottom, var(--welcome-bg-start) 0%, var(--welcome-bg-end) 100%);
   background: linear-gradient(to bottom, var(--welcome-bg-start) 0%, var(--welcome-bg-end) 100%);
