@@ -11,6 +11,9 @@
     opacity: 0.5;
   }
 }
+.calc {
+  height: calc(100vh - 88px - 240px);
+}
 .tabItem {
   &.textCenter {
     flex: 1;

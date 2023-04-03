@@ -29,6 +29,7 @@ export const Tabs = <T extends string>({ value, onChange, tabItems = [], classNa
         ))}
       </ol>
       <div
+        className={s.calc}
         grow-1 shrink-1 overflow-auto bg-white
       >
         {tabItems.filter(item => item.key === value)[0].element}
