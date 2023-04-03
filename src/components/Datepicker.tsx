@@ -16,7 +16,7 @@ export const Datepicker: React.FC<Props> = (props) => {
   if (endTime.timestamp <= startTime.timestamp) {
     throw new Error('结束时间必须晚于开始时间')
   }
-  const [, update] = useState({})
+  const [, update] = useState({}) // 重新渲染组件但不会改变组件的state
   const valueTime = useRef(value ? time(value) : time())
   const yearList = Array.from({ length: endTime.year - startTime.year + 1 })
     .map((_, index) => startTime.year + index)

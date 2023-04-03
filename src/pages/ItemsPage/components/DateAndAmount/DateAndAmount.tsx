@@ -18,7 +18,8 @@ export const DateAndAmount: React.FC<Props> = ({ className }) => {
     <Datepicker 
       onConfirm={(d: Date)  => { setDate(d); hide(); }} 
       onCancel={() => hide()}
-    />)
+    />
+  )
 
   return (
     <>
