@@ -13,6 +13,7 @@ import { ItemsPage } from '../pages/ItemsPage/ItemsPage';
 import { SigninPage } from '../pages/SigninPage/SigninPage';
 import { UseCountDownDemo } from '../components/UseCountDownDemo';
 import { ItemCreate } from '../pages/ItemsPage/components/ItemCreate/ItemCreate';
+import { List } from '../pages/TestPage/List';
 
 export const routes = createBrowserRouter([
   { path: '/', element: <BeforeRootEnter/>, errorElement: <NotFoundPage /> },
@@ -44,5 +45,7 @@ export const routes = createBrowserRouter([
   { path: '/items', element: <ItemsPage /> },
   { path: '/items/create', element: <ItemCreate /> },
   { path: '/sign_in', element: <SigninPage /> },
+  { path: '/demo', element: <List /> },
+
 
 ])

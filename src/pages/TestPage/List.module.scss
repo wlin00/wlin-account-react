@@ -1,0 +1,31 @@
+.list {
+  width: 100%;
+}
+.listItem {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: #333;
+  border: 1px solid #ddd;
+  margin: 20px;
+}
+.button {
+  display: inline-flex;
+  height: 32px;
+  border-radius: 8px;
+  padding: 0 20px;
+  cursor: pointer;
+  font-size: 14px;
+  background: #39f;
+  color: #fff;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    opacity: .7;
+  }
+}
