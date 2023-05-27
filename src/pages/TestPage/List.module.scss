@@ -13,6 +13,9 @@
   border: 1px solid #ddd;
   margin: 20px;
 }
+.buttonWrap {
+  margin-left: auto;
+}
 .button {
   display: inline-flex;
   height: 32px;
@@ -22,10 +25,34 @@
   font-size: 14px;
   background: #39f;
   color: #fff;
-  margin-left: auto;
   align-items: center;
   justify-content: center;
   &:hover {
     opacity: .7;
   }
+}
+.normalStyle {
+  background-color: #ddd;
+  color: #fff;
+  margin-right: 5px;
+}
+.addWrap {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+  justify-content: center;
+  > span {
+    background: #39f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    height: 32px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 8px;
+  }
+}
+.isCompleted {
+  text-decoration: line-through;
 }
